@@ -113,28 +113,36 @@ Given s = "leetcode", return "leotcede".
 
 <div align="center"> <img src="https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/ef25ff7c-0f63-420d-8b30-eafbeea35d11.gif" width="400px"> </div><br>
 
-```java
-private final static HashSet<Character> vowels = new HashSet<>(
-        Arrays.asList('a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'));
+```python
+class Solution(object):
+    def reverseVowels(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
 
-public String reverseVowels(String s) {
-    if (s == null) return null;
-    int i = 0, j = s.length() - 1;
-    char[] result = new char[s.length()];
-    while (i <= j) {
-        char ci = s.charAt(i);
-        char cj = s.charAt(j);
-        if (!vowels.contains(ci)) {
-            result[i++] = ci;
-        } else if (!vowels.contains(cj)) {
-            result[j--] = cj;
-        } else {
-            result[i++] = cj;
-            result[j--] = ci;
-        }
-    }
-    return new String(result);
-}
+        tempList = ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U']
+
+        i = 0
+        j = len(s)-1
+        result = [0 for m in range(j+1)]
+
+        while i <= j:
+            c1 = s[i]
+            c2 = s[j]
+            if c1 not in tempList:
+                result[i] = c1
+                i = i + 1
+            elif c2 not in tempList:
+                result[j] = c1
+                j = j - 1
+            else:
+                result[i] = c2
+                result[j] = c1
+                i = i + 1
+                j = j -1
+
+        return ''.join(result)
 ```
 
 # 4. 回文字符串
